@@ -1,0 +1,19 @@
+flutter_native_splash:
+  color: "#42a5f5"
+  image: assets/Icons/phoneIcon.png
+
+  color_dark: "#000000"
+  image_dark: assets/Icons/phoneIcon.png
+
+  android_12:
+    image: assets/images/SplashScreen_weatherapp.png
+    color: "#42a5f5"
+    image_dark: assets/images/SplashScreen_weatherapp.png
+    color_dark: "#0C1823"
+
+  android: true
+  ios: true
+  fullscreen: true
+
+  android_gravity: center
+  ios_content_mode: center

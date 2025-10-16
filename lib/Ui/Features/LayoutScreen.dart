@@ -1,0 +1,61 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:weatherapp/Core/ColorsManager.dart';
+import 'package:weatherapp/Ui/Features/Home/HomeScreen.dart';
+import 'package:weatherapp/Ui/Features/Map/Map.dart';
+import 'package:weatherapp/Ui/Features/Mode/moodeScreen.dart';
+import 'package:weatherapp/Ui/Features/profile/Profile.dart';
+
+class Layoutscreen extends StatefulWidget {
+  const Layoutscreen({super.key});
+
+  @override
+  State<Layoutscreen> createState() => _LayoutscreenState();
+}
+
+class _LayoutscreenState extends State<Layoutscreen> {
+  int selectedIndex = 0;
+
+  final List<Widget> screens = [
+    Homescreen(),
+    Moodescreen(),
+    MapScreen(),
+    Profile(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: ColorsManager.white,
+      body: screens[selectedIndex],
+      bottomNavigationBar: Container(
+        height: 60.h,
+        margin: REdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+        decoration: BoxDecoration(
+          color: ColorsManager.white,
+          borderRadius: BorderRadius.circular(30.r),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            _buildIcon(Icons.home, 0),
+            _buildIcon(Icons.mood, 1),
+            _buildIcon(Icons.location_on_outlined, 2),
+            _buildIcon(Icons.person, 3),
+          ],
+        ),
+      ),
+    );
+  }
+  Widget _buildIcon(IconData icon, int index) {
+    bool isSelected = selectedIndex == index;
+    return IconButton(
+      onPressed: () {
+        setState(() {
+          selectedIndex = index;
+        });
+      },
+      icon: Icon(icon, color: isSelected ? ColorsManager.darkPurple : Colors.grey, size: 28.sp,),
+    );
+  }
+}
