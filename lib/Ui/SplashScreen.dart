@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:weatherapp/Core/ColorsManager.dart';
 import 'package:weatherapp/Core/RoutesManager.dart';
 
 class SplashScreenAnimation extends StatefulWidget {
@@ -23,13 +24,12 @@ class _SplashScreenAnimationState extends State<SplashScreenAnimation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlueAccent,
+      backgroundColor: ColorsManager.black,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Lottie.asset(
-              "assets/lottie/Weather-windy.json",
+            Lottie.asset("assets/lottie/Weather-windy.json",
               width: 250,
               height: 250,
               fit: BoxFit.contain,

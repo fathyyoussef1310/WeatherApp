@@ -26,25 +26,28 @@ class _LayoutscreenState extends State<Layoutscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsManager.white,
-      body: screens[selectedIndex],
-      bottomNavigationBar: Container(
-        height: 60.h,
-        margin: REdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
-        decoration: BoxDecoration(
-          color: ColorsManager.white,
-          borderRadius: BorderRadius.circular(30.r),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _buildIcon(Icons.home, 0),
-            _buildIcon(Icons.mood, 1),
-            _buildIcon(Icons.location_on_outlined, 2),
-            _buildIcon(Icons.person, 3),
-          ],
+    body: screens[selectedIndex],
+      bottomNavigationBar:
+      Container(
+        width: double.infinity,
+        margin: REdgeInsets.symmetric(horizontal: 5.w,vertical: 18.h),
+        child: Container(
+          decoration: BoxDecoration(
+            color: ColorsManager.black,
+            borderRadius: BorderRadius.circular(100.r),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildIcon(Icons.sunny, 0),
+              _buildIcon(Icons.mood, 1),
+              _buildIcon(Icons.location_on_outlined, 2),
+              _buildIcon(Icons.account_box, 3),
+            ],
+          ),
         ),
       ),
+      backgroundColor: ColorsManager.black,
     );
   }
   Widget _buildIcon(IconData icon, int index) {
