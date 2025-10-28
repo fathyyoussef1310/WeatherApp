@@ -12,15 +12,15 @@ class WeatherError extends WeatherState {
   WeatherError(this.error);
 }
 class WeatherCubit extends Cubit<WeatherState> {
-  final WeatherRepos repo;
+  final weatherrepo repo;
   WeatherCubit(this.repo) : super(WeatherInitial());
   Future<void> getData(String city) async {
     emit(WeatherLoading());
     try {
-      final weatherData = await repo.fetchData(city);
-      emit(WeatherLoaded(weatherData));
+      final data = await repo.Fetchdata(city);
+      emit(WeatherLoaded(data));
     } catch (e) {
-      emit(WeatherError(e.toString()));
+      emit(WeatherError("Error loading data: $e"));
     }
   }
 }

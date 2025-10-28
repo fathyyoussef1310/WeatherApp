@@ -22,47 +22,56 @@ class _HomescreenState extends State<Homescreen> {
         child: Padding(
           padding: EdgeInsets.all(16.w),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SearchWidgetWeather(text: "Search for a City"),
               SizedBox(height: 30.h),
               BlocBuilder<WeatherCubit, WeatherState>(
                 builder: (context, state) {
-                  if (state is WeatherLoading) {
-                    return const Center(child: CircularProgressIndicator(color: Colors.blue),);
-                  } else if (state is WeatherError) {
-                    return Center(
-                      child: Text("Error in your search ⚠️", style: GoogleFonts.poppins(color: Colors.red, fontSize: 18.sp,),
-                      ),
-                    );
+                  if (state is WeatherError) {
+                    return Center(child: Text("Error ❌❌", style: GoogleFonts.poppins(color: Colors.red),));
+                  } else if (state is WeatherLoading) {
+                    return Center(child: CircularProgressIndicator(color: Colors.yellow.shade800,),);
                   } else if (state is WeatherLoaded) {
                     final weather = state.data;
-                    final temp = weather['current']['temp_c'];
                     final city = weather['location']['name'];
+                    final temp = weather['current']['temp_c'];
                     final condition = weather['current']['condition']['text'];
-                    return Column(
-                      children: [
-                        Text("Weather in $city", style: GoogleFonts.poppins(color: ColorsManager.white, fontSize: 27.sp, fontWeight: FontWeight.bold,),),
-                        SizedBox(height: 25.h),
-                        Container(
-                          height: 180.h,
-                          width: 180.w,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: ColorsManager.solid2,
+                    final icon = weather['current']['condition']['icon'];
+                    final lastupdated = weather['current']['lastupdate'];
+                    return SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Text("Weather in $city is", style: GoogleFonts.poppins(color: ColorsManager.white, fontSize: 20.sp, fontWeight: FontWeight.bold),),
+                          SizedBox(height: 3.h,),
+                          Center(
+                            child: Container(
+                              height: 270.h,
+                              width: 300.w,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: ColorsManager.solid1,
+                              ),
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("$temp°C", style: GoogleFonts.poppins(color: ColorsManager.white, fontSize: 40.sp),),
+                                    Text(condition, style: GoogleFonts.afacad(color: ColorsManager.white, fontSize: 20.sp),),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ),
-                          alignment: Alignment.center,
-                          child: Text("$temp°C", style: GoogleFonts.poppins(color: Colors.white, fontSize: 40.sp, fontWeight: FontWeight.bold,),
-                          ),
-                        ),
-                        SizedBox(height: 20.h),
-                        Text(condition, style: GoogleFonts.poppins(color: ColorsManager.white, fontSize: 22.sp,),
-                        ),
-                      ],
+                          Text("Last updated: $lastupdated",style: GoogleFonts.inter(color: ColorsManager.white,fontSize: 18,fontWeight: FontWeight.bold,),)
+                        ],
+                      ),
+                    );
+                  } else {
+                    return Center(
+                      child: Text("Search for a City 🌤️", style: GoogleFonts.poppins(color: ColorsManager.white, fontSize: 18.sp),),
                     );
                   }
-                  return Text("Enter a city name above 🌍", style: GoogleFonts.poppins(color: Colors.grey, fontSize: 18.sp,),
-                  );
                 },
               ),
             ],

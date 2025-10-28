@@ -6,12 +6,7 @@ import 'package:weatherapp/Data/User_Repo.dart';
 import 'package:weatherapp/Logic/Weatherdata/WeatherState.dart';
 
 void main() {
-  runApp(
-    BlocProvider(
-      create: (context) => WeatherCubit(WeatherRepos()),
-      child: const MyApp(),
-    ),
-  );
+  runApp(BlocProvider(create: (context) => WeatherCubit(weatherrepo()), child: const MyApp(),),);
 }
 
 class MyApp extends StatelessWidget {

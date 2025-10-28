@@ -23,10 +23,8 @@ class SearchWidgetWeather extends StatelessWidget {
           Icon(CupertinoIcons.search, color: ColorsManager.white),
           SizedBox(width: 10.w),
           Expanded(
-            child: TextField(
-              style: GoogleFonts.poppins(color: ColorsManager.white, fontSize: 19.sp,),
+            child: TextField(style: GoogleFonts.poppins(color: ColorsManager.white, fontSize: 19.sp,),
               onSubmitted: (value) {
-                log(value);
                 context.read<WeatherCubit>().getData(value);
               },
               cursorColor: ColorsManager.white,
