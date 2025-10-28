@@ -18,7 +18,7 @@ class _SplashScreenAnimationState extends State<SplashScreenAnimation> {
   }
   Future<void> _navigateToNext() async {
     await Future.delayed(Duration(seconds: 6));
-      Navigator.pushReplacementNamed(context, RoutesManager.splashScreen2);
+    Navigator.pushReplacementNamed(context, RoutesManager.splashScreen2);
   }
 
   @override
@@ -35,7 +35,7 @@ class _SplashScreenAnimationState extends State<SplashScreenAnimation> {
               fit: BoxFit.contain,
             ),
             SizedBox(height: 30),
-             Text("Welcome To WeatherX ☀️", textAlign: TextAlign.center, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white,),
+            Text("Welcome To WeatherX ☀️", textAlign: TextAlign.center, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white,),
             ),
           ],
         ),

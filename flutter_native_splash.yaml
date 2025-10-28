@@ -1,13 +1,11 @@
 flutter_native_splash:
-  color: "#42a5f5"
+  color: "#000000"
   image: assets/Icons/phoneIcon.png
-
   color_dark: "#000000"
   image_dark: assets/Icons/phoneIcon.png
-
   android_12:
     image: assets/images/SplashScreen_weatherapp.png
-    color: "#42a5f5"
+    color: "#0C1823"
     image_dark: assets/images/SplashScreen_weatherapp.png
     color_dark: "#0C1823"
 

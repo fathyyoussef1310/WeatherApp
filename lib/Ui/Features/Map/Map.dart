@@ -1,27 +1,54 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:weatherapp/Core/ColorsManager.dart';
 
 class MapSample extends StatefulWidget {
   const MapSample({super.key});
+
   @override
   State<MapSample> createState() => MapSampleState();
 }
+
 class MapSampleState extends State<MapSample> {
   final Completer<GoogleMapController> _controller =
   Completer<GoogleMapController>();
+
   static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
+    target: LatLng(20, 37),
+    zoom: 4,
   );
 
-  static const CameraPosition _kLake = CameraPosition(
-    bearing: 192.8334901395799,
-    target: LatLng(37.43296265331129, -122.08832357078792),
-    tilt: 59.440717697143555,
-    zoom: 19.151926040649414,
-  );
+  Future<void> myLocation() async {
+    bool enabled = await Geolocator.isLocationServiceEnabled();
+    if (!enabled) {
+      await Geolocator.openLocationSettings();
+      return;
+    }
+    LocationPermission per = await Geolocator.checkPermission();
+    if (per == LocationPermission.denied) {
+      per = await Geolocator.requestPermission();
+    }
+    if (per == LocationPermission.denied || per == LocationPermission.deniedForever) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Please Give The Application Access To Location"),
+          backgroundColor: ColorsManager.red,
+        ),
+      );
+      return;
+    }
+    Position pos = await Geolocator.getCurrentPosition();
+    final GoogleMapController controller = await _controller.future;
+    controller.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: LatLng(pos.latitude, pos.longitude),
+          zoom: 20,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,17 +59,14 @@ class MapSampleState extends State<MapSample> {
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
+        myLocationButtonEnabled: true,
+        myLocationEnabled: true,
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake,
-        label: const Text('To the lake!'),
-        icon: const Icon(Icons.directions_boat),
+        onPressed: myLocation,
+        label: Text(''),
+        icon: Icon(Icons.location_on_sharp),
       ),
     );
-  }
-
-  Future<void> _goToTheLake() async {
-    final GoogleMapController controller = await _controller.future;
-    await controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
   }
 }

@@ -27,14 +27,14 @@ class _LayoutscreenState extends State<Layoutscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    body: screens[selectedIndex],
+      body: screens[selectedIndex],
       bottomNavigationBar:
       Container(
         width: double.infinity,
         margin: REdgeInsets.symmetric(horizontal: 5.w,vertical: 18.h),
         child: Container(
           decoration: BoxDecoration(
-            color: ColorsManager.black,
+            color: Colors.transparent,
             borderRadius: BorderRadius.circular(100.r),
           ),
           child: Row(

@@ -30,15 +30,15 @@ class _MoodescreenState extends State<Moodescreen> {
           padding: REdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("How do you feel today? 🥰", style: TextStyle(color: ColorsManager.white, fontSize: 22.sp, fontWeight: FontWeight.bold,),),
-                SizedBox(height: 20.h),
-                _buildMoodList(),
-                SizedBox(height: 20.h),
-                Center(child: Text("Your mood: ${widget.feelings[widget.Cindex]}", style: TextStyle(color: ColorsManager.white, fontSize: 18.sp,),),),
-              ],
-            ),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("How do you feel today? 🥰", style: TextStyle(color: ColorsManager.white, fontSize: 22.sp, fontWeight: FontWeight.bold,),),
+              SizedBox(height: 20.h),
+              _buildMoodList(),
+              SizedBox(height: 20.h),
+              Center(child: Text("Your mood: ${widget.feelings[widget.Cindex]}", style: TextStyle(color: ColorsManager.white, fontSize: 18.sp,),),),
+            ],
+          ),
         ),
       ),
     );
