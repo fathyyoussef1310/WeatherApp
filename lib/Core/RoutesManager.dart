@@ -28,7 +28,7 @@ class RoutesManager{
       case moode:
         return CupertinoPageRoute(builder: (_)=> Moodescreen());
       case map:
-        return CupertinoPageRoute(builder: (_)=> MapScreen());
+        return CupertinoPageRoute(builder: (_)=> MapSample());
       case profile:
         return CupertinoPageRoute(builder: (_)=> Profile());
     }

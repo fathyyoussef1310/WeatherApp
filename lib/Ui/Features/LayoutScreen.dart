@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weatherapp/Core/ColorsManager.dart';
@@ -19,7 +20,7 @@ class _LayoutscreenState extends State<Layoutscreen> {
   final List<Widget> screens = [
     Homescreen(),
     Moodescreen(),
-    MapScreen(),
+    MapSample(),
     Profile(),
   ];
 
@@ -39,10 +40,10 @@ class _LayoutscreenState extends State<Layoutscreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildIcon(Icons.sunny, 0),
-              _buildIcon(Icons.mood, 1),
+              _buildIcon(CupertinoIcons.cloud_sun, 0),
+              _buildIcon(CupertinoIcons.heart_solid, 1),
               _buildIcon(Icons.location_on_outlined, 2),
-              _buildIcon(Icons.account_box, 3),
+              _buildIcon(Icons.flash_on_sharp, 3),
             ],
           ),
         ),

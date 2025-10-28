@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:weatherapp/Core/ColorsManager.dart';
 import 'package:weatherapp/Core/Widgets/SearchWidget.dart';
+import 'package:weatherapp/Data/Condition.dart';
 import 'package:weatherapp/Logic/Weatherdata/WeatherState.dart';
 
 class Homescreen extends StatefulWidget {
@@ -26,54 +27,49 @@ class _HomescreenState extends State<Homescreen> {
             children: [
               SearchWidgetWeather(text: "Search for a City"),
               SizedBox(height: 30.h),
-              BlocBuilder<WeatherCubit, WeatherState>(
+              BlocBuilder<WeatherCubit,WeatherState>(
                 builder: (context, state) {
-                  if (state is WeatherError) {
-                    return Center(child: Text("Error ❌❌", style: GoogleFonts.poppins(color: Colors.red),));
-                  } else if (state is WeatherLoading) {
-                    return Center(child: CircularProgressIndicator(color: Colors.yellow.shade800,),);
-                  } else if (state is WeatherLoaded) {
-                    final weather = state.data;
-                    final city = weather['location']['name'];
-                    final temp = weather['current']['temp_c'];
-                    final condition = weather['current']['condition']['text'];
-                    final icon = weather['current']['condition']['icon'];
-                    final lastupdated = weather['current']['lastupdate'];
+                  if(state is WeatherLoaded){
+                    return Center(
+                      child: CircularProgressIndicator(color: ColorsManager.white,),
+                    );
+                  }else if(state is WeatherError){
+                    return Center(child: Text("Error please Type Correctly 🤦‍♀️",style: GoogleFonts.poppins(color: ColorsManager.red,fontSize: 20.sp,fontWeight: FontWeight.w700),),);
+                  }else if(state is Weatherloading){
+                    final weather=state.data;
+                    final city = weather['location']?['name'] ?? 'Unknown';
+                    final degree = weather['current']?['temp_c'] ?? 0;
+                    final condition = weather['current']?['condition']?['text'] ?? 'N/A';
                     return SingleChildScrollView(
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Weather in $city is", style: GoogleFonts.poppins(color: ColorsManager.white, fontSize: 20.sp, fontWeight: FontWeight.bold),),
-                          SizedBox(height: 3.h,),
+                          Text("Weather in $city",style: GoogleFonts.poppins(color: ColorsManager.white,fontWeight: FontWeight.bold,fontSize: 30.sp),),
+                          SizedBox(height: 16.h,),
                           Center(
                             child: Container(
-                              height: 270.h,
-                              width: 300.w,
+                              height: 250.sp,
+                              width: double.infinity,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: ColorsManager.solid1,
-                              ),
-                              child: Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text("$temp°C", style: GoogleFonts.poppins(color: ColorsManager.white, fontSize: 40.sp),),
-                                    Text(condition, style: GoogleFonts.afacad(color: ColorsManager.white, fontSize: 20.sp),),
-                                  ],
-                                ),
-                              ),
+                                color: ColorsManager.darkPurple,
+                              ),child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text('$degree',style: GoogleFonts.poppins(color: ColorsManager.white,fontSize: 80.sp),),
+                                Text("$condition",style: GoogleFonts.poppins(color: ColorsManager.white,fontSize: 40.sp)),
+                              ],
                             ),
-                          ),
-                          Text("Last updated: $lastupdated",style: GoogleFonts.inter(color: ColorsManager.white,fontSize: 18,fontWeight: FontWeight.bold,),)
+                            ),
+                          )
                         ],
                       ),
                     );
-                  } else {
-                    return Center(
-                      child: Text("Search for a City 🌤️", style: GoogleFonts.poppins(color: ColorsManager.white, fontSize: 18.sp),),
-                    );
+                  }else {
+                    return Center(child: Text("Search for a City Sir",style: GoogleFonts.farro(color: ColorsManager.white,fontSize: 22.sp,fontWeight: FontWeight.w700),));
                   }
                 },
-              ),
+              )
             ],
           ),
         ),

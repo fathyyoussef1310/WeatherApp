@@ -9,6 +9,7 @@ class ColorsManager {
   static const Color darkSecondary = Color(0xffEBEBF5);
   static const Color darkTertiary = Color(0xffEBEBF5);
   static const Color darkQuaternary = Color(0xffEBEBF5);
+  static const Color red = Colors.red;
   static const List<Color> linearGradient1 = [
     Color(0xff2E335A),
     Color(0xff1C1B33),

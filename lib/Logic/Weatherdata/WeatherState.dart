@@ -1,26 +1,30 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weatherapp/Data/User_Repo.dart';
-abstract class WeatherState {}
-class WeatherInitial extends WeatherState {}
-class WeatherLoading extends WeatherState {}
-class WeatherLoaded extends WeatherState {
-  final Map<String, dynamic> data;
-  WeatherLoaded(this.data);
+import 'package:weatherapp/Data/Weathe_response.dart';
+
+abstract class WeatherState{
+
 }
-class WeatherError extends WeatherState {
-  final String error;
-  WeatherError(this.error);
+class WeatherError extends WeatherState{
+  String message;
+  WeatherError({required this.message});
 }
-class WeatherCubit extends Cubit<WeatherState> {
-  final weatherrepo repo;
-  WeatherCubit(this.repo) : super(WeatherInitial());
-  Future<void> getData(String city) async {
-    emit(WeatherLoading());
-    try {
-      final data = await repo.Fetchdata(city);
-      emit(WeatherLoaded(data));
-    } catch (e) {
-      emit(WeatherError("Error loading data: $e"));
+class WeatherInital extends WeatherState{}
+class Weatherloading extends WeatherState{
+  Map<String,dynamic>data;
+  Weatherloading({required this.data});
+}
+class WeatherLoaded extends WeatherState{}
+class WeatherCubit extends Cubit<WeatherState>{
+  final weatherRepo repo;
+  WeatherCubit(this.repo):super(WeatherInital());
+  Future<void>getData(String city)async{
+    emit(WeatherLoaded());
+    try{
+      final ans= await repo.fetchData(city);
+      emit(Weatherloading(data: ans));
+    }catch(e){
+      emit(WeatherError(message: 'Error'));
     }
   }
 }
