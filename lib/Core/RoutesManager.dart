@@ -4,7 +4,6 @@ import 'package:weatherapp/Ui/Features/LayoutScreen.dart';
 import 'package:weatherapp/Ui/Features/Map/Map.dart';
 import 'package:weatherapp/Ui/Features/Mode/moodeScreen.dart';
 import 'package:weatherapp/Ui/Features/SplashScreen2.dart';
-import 'package:weatherapp/Ui/Features/profile/Profile.dart';
 import 'package:weatherapp/Ui/SplashScreen.dart';
 
 class RoutesManager{
@@ -29,8 +28,6 @@ class RoutesManager{
         return CupertinoPageRoute(builder: (_)=> Moodescreen());
       case map:
         return CupertinoPageRoute(builder: (_)=> MapSample());
-      case profile:
-        return CupertinoPageRoute(builder: (_)=> Profile());
     }
   }
 }

@@ -5,8 +5,6 @@ import 'package:weatherapp/Core/ColorsManager.dart';
 import 'package:weatherapp/Ui/Features/Home/HomeScreen.dart';
 import 'package:weatherapp/Ui/Features/Map/Map.dart';
 import 'package:weatherapp/Ui/Features/Mode/moodeScreen.dart';
-import 'package:weatherapp/Ui/Features/profile/Profile.dart';
-
 class Layoutscreen extends StatefulWidget {
   const Layoutscreen({super.key});
 
@@ -21,7 +19,6 @@ class _LayoutscreenState extends State<Layoutscreen> {
     Homescreen(),
     Moodescreen(),
     MapSample(),
-    Profile(),
   ];
 
   @override
@@ -39,11 +36,11 @@ class _LayoutscreenState extends State<Layoutscreen> {
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
+            children:
+            [
               _buildIcon(CupertinoIcons.cloud_sun, 0),
               _buildIcon(CupertinoIcons.heart_solid, 1),
               _buildIcon(Icons.location_on_outlined, 2),
-              _buildIcon(Icons.flash_on_sharp, 3),
             ],
           ),
         ),
