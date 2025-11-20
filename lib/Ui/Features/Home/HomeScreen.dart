@@ -45,10 +45,10 @@ class _HomescreenState extends State<Homescreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text("Weather in $city",style: GoogleFonts.poppins(color: ColorsManager.white,fontWeight: FontWeight.bold,fontSize: 30.sp),),
-                          SizedBox(height: 16.h,),
+                          SizedBox(height: 8.h,),
                           Center(
                             child: Container(
-                              height: 250.sp,
+                              height: 240.sp,
                               width: double.infinity,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
@@ -56,8 +56,8 @@ class _HomescreenState extends State<Homescreen> {
                               ),child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text('$degree',style: GoogleFonts.poppins(color: ColorsManager.white,fontSize: 80.sp),),
-                                Text("$condition",style: GoogleFonts.poppins(color: ColorsManager.white,fontSize: 40.sp)),
+                                Text('$degree',style: GoogleFonts.poppins(color: ColorsManager.white,fontSize: 70.sp),),
+                                Text("$condition",style: GoogleFonts.poppins(color: ColorsManager.white,fontSize: 30.sp)),
                               ],
                             ),
                             ),
