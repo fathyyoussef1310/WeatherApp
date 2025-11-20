@@ -56,7 +56,7 @@ class _HomescreenState extends State<Homescreen> {
                               ),child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text('$degree',style: GoogleFonts.poppins(color: ColorsManager.white,fontSize: 70.sp),),
+                                Text('$degree in Celsius',style: GoogleFonts.poppins(color: ColorsManager.white,fontSize: 70.sp),),
                                 Text("$condition",style: GoogleFonts.poppins(color: ColorsManager.white,fontSize: 30.sp)),
                               ],
                             ),
